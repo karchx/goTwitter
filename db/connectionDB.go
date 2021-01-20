@@ -29,7 +29,7 @@ func ConnectDB() *mongo.Client {
 	return client
 }
 
-/* ConnectionCheck is the ping to the database */
+/* ConnectionCheck() is the ping to the database */
 func ConnectionCheck() int {
 	err := MongoCN.Ping(context.TODO(), nil)
 	if err != nil {
