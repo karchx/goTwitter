@@ -1,4 +1,4 @@
-package middleware
+package middlewares
 
 import (
 	"net/http"
@@ -7,12 +7,12 @@ import (
 )
 
 /* DBCheck it is the middleware that allows me to know the state of the database */
-func DBCheck(nex http.HandlerFunc) http.HandlerFunc {
+func DBCheck(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if db.ConnectionCheck() == 0 {
 			http.Error(w, "Conexión perdida con la base de datos", 500)
 			return
 		}
-		next.ServeHttp(w, r)
+		next.ServeHTTP(w, r)
 	}
 }

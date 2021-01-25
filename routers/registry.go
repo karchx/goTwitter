@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/KenethSandoval/db"
-	"github.com/KenethSandoval/models"
+	"github.com/KenethSandoval/goTwitter/db"
+	"github.com/KenethSandoval/goTwitter/models"
 )
 
 /* Registry it is the function to believe the user record in the database */
@@ -34,7 +34,7 @@ func Registry(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, status, err := db.IsertRegistry(t)
+	_, status, err := db.InsertRegistry(t)
 
 	if err != nil {
 		http.Error(w, "Ocurrio un error al intentar realizar el registro de usuario"+err.Error(), 400)
