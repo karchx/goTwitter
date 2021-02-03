@@ -10,7 +10,7 @@ import (
 
 /*BorroTweet borra un tweet determinado*/
 func BorroTweet(ID string, UserID string) error {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
 	db := MongoCN.Database("clonetwitter")

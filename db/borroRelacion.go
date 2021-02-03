@@ -7,15 +7,15 @@ import (
 	"github.com/KenethSandoval/goTwitter/models"
 )
 
-/* InsertoRelacion inserta la relacion entre los usuarios */
-func InsertoRelacion(t models.Relacion) (bool, error) {
+/*BorroRelacion borra la relacion en la DB*/
+func BorroRelacion(t models.Relacion) (bool, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
 	db := MongoCN.Database("clonetwitter")
 	col := db.Collection("relacion")
 
-	_, err := col.InsertOne(ctx, t)
+	_, err := col.DeleteOne(ctx, t)
 	if err != nil {
 		return false, err
 	}
