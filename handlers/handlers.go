@@ -28,8 +28,11 @@ func Handlers() {
 	router.HandleFunc("/subirBanner", middlewares.DBCheck(middlewares.ValidoJWT(routers.SubirBanner))).Methods("POST")
 	router.HandleFunc("/obtenerBanner", middlewares.DBCheck(routers.ObtenerBanner)).Methods("GET")
 
-	router.HandleFunc("/altaRelacion", middlewares.DBCheck(routers.AltaRelacion)).Methods("POST")
-	router.HandleFunc("/bajaRelacion", middlewares.DBCheck(routers.BajaRelacion)).Methods("DELETE")
+	router.HandleFunc("/altaRelacion", middlewares.DBCheck(middlewares.ValidoJWT(routers.AltaRelacion))).Methods("POST")
+	router.HandleFunc("/bajaRelacion", middlewares.DBCheck(middlewares.ValidoJWT(routers.BajaRelacion))).Methods("DELETE")
+	router.HandleFunc("/consultaRelacion", middlewares.DBCheck(middlewares.ValidoJWT(routers.ConsultaRelacion))).Methods("GET")
+
+	router.HandleFunc("/listaUsuarios", middlewares.DBCheck(middlewares.ValidoJWT(routers.ListaUsuarios))).Methods("GET")
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
