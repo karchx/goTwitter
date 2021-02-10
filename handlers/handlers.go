@@ -33,6 +33,7 @@ func Handlers() {
 	router.HandleFunc("/consultaRelacion", middlewares.DBCheck(middlewares.ValidoJWT(routers.ConsultaRelacion))).Methods("GET")
 
 	router.HandleFunc("/listaUsuarios", middlewares.DBCheck(middlewares.ValidoJWT(routers.ListaUsuarios))).Methods("GET")
+	router.HandleFunc("/leoTweetsUsuarios", middlewares.DBCheck(middlewares.ValidoJWT(routers.LeoTweetsUsuarios))).Methods("GET")
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
